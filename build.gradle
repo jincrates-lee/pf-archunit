@@ -28,6 +28,9 @@ dependencies {
 
     // database - h2
     runtimeOnly "com.h2database:h2:${h2DatabaseVersion}"
+
+    // archunit
+    testImplementation "com.tngtech.archunit:archunit-junit5:${archunitVersion}"
 }
 
 test {
