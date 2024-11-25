@@ -5,7 +5,7 @@ import java.util.Optional;
 import kr.co.petfriends.sample.common.annotation.UseCase;
 import kr.co.petfriends.sample.common.exception.DomainException;
 import kr.co.petfriends.sample.domain.order.model.Order;
-import kr.co.petfriends.sample.domain.order.port.OrderRepository;
+import kr.co.petfriends.sample.domain.order.port.OrderDataPort;
 import kr.co.petfriends.sample.domain.order.usecase.OrderUseCase;
 import lombok.RequiredArgsConstructor;
 
@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class OrderUseCaseImpl implements OrderUseCase {
 
-    private final OrderRepository repository;
+    private final OrderDataPort repository;
 
     @Override
     public Order requestOrder(Order order) {

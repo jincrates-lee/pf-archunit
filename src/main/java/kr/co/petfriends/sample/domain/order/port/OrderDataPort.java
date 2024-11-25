@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import kr.co.petfriends.sample.domain.order.model.Order;
 
-public interface OrderRepository {
+public interface OrderDataPort {
 
     Order save(Order order);
 
