@@ -30,7 +30,7 @@ dependencies {
     runtimeOnly "com.h2database:h2:${h2DatabaseVersion}"
 
     // archunit
-    testImplementation "com.tngtech.archunit:archunit-junit5:${archunitVersion}"
+    testImplementation "com.tngtech.archunit:archunit:${archunitVersion}"
 }
 
 test {
