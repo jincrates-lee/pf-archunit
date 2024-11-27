@@ -91,7 +91,7 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @Test
         @DisplayName("패키지 간 순환 의존성이 없어야 한다.")
         void checkCyclicDependency() {
-            ArchRule rule = slices().matching("..(*).(*)..")
+            ArchRule rule = slices().matching(DEFAULT_PACKAGE + ".(*)..")
                 .should().beFreeOfCycles();
 
             rule.check(TARGET_CLASSES);

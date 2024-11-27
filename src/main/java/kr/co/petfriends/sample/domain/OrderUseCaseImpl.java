@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 class OrderUseCaseImpl implements OrderUseCase {
 
+    //private final OrderService orderService;
     private final OrderDataPort repository;
 
     @Override

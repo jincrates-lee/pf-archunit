@@ -1,6 +1,7 @@
 package kr.co.petfriends.convention;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
@@ -39,6 +40,15 @@ public class ExampleTest {
 
         // DOMAIN_PACKAGE_SUB 패키지에 속한 클래스 중에서
         // API_PACKAGE_SUB, INFRA_PACKAGE_SUB 패키지에 속한 클래스에 의존하는 클래스가 없어야 한다.
+        rule.check(TARGET_CLASSES);
+    }
+
+    @Test
+    @DisplayName("패키지 간 순환 의존성이 없어야 한다.")
+    void checkCyclicDependency() {
+        ArchRule rule = slices().matching(DEFAULT_PACKAGE + ".(*)..")
+            .should().beFreeOfCycles();
+
         rule.check(TARGET_CLASSES);
     }
 }
