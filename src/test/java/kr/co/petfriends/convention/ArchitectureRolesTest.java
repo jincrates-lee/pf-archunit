@@ -34,8 +34,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArchitectureRolesTest extends ArchUnitSupport {
 
     @Nested
-    @DisplayName("패키지 간 의존성을 검증한다.")
-    class CheckPackageDependency {
+    @DisplayName("아키텍처 원칙을 검증한다.")
+    class CheckArchitectureRole {
 
         @Test
         @DisplayName("domain 패키지는 api, infrastructure 패키지에 의존하지 않아야 한다.")
