@@ -5,8 +5,8 @@ import static kr.co.petfriends.sample.common.constants.CommonConstant.ORDER_PREF
 import kr.co.petfriends.sample.api.service.dto.CreateOrderCommand;
 import kr.co.petfriends.sample.api.service.dto.OrderResponse;
 import kr.co.petfriends.sample.common.utils.IdGenerator;
-import kr.co.petfriends.sample.domain.order.enums.OrderStatus;
-import kr.co.petfriends.sample.domain.order.model.Order;
+import kr.co.petfriends.sample.domain.enums.OrderStatus;
+import kr.co.petfriends.sample.domain.model.Order;
 
 public class OrderMapper {
 

@@ -1,4 +1,4 @@
-package kr.co.petfriends.sample.domain.order.port;
+package kr.co.petfriends.sample.domain.port;
 
 public interface OrderEventPublishPort {
 

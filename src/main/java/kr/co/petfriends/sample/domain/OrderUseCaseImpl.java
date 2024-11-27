@@ -1,12 +1,12 @@
-package kr.co.petfriends.sample.domain.order;
+package kr.co.petfriends.sample.domain;
 
 import java.util.List;
 import java.util.Optional;
 import kr.co.petfriends.sample.common.annotation.UseCase;
 import kr.co.petfriends.sample.common.exception.DomainException;
-import kr.co.petfriends.sample.domain.order.model.Order;
-import kr.co.petfriends.sample.domain.order.port.OrderDataPort;
-import kr.co.petfriends.sample.domain.order.usecase.OrderUseCase;
+import kr.co.petfriends.sample.domain.model.Order;
+import kr.co.petfriends.sample.domain.port.OrderDataPort;
+import kr.co.petfriends.sample.domain.usecase.OrderUseCase;
 import lombok.RequiredArgsConstructor;
 
 @UseCase

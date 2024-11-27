@@ -1,8 +1,8 @@
-package kr.co.petfriends.sample.domain.order.port;
+package kr.co.petfriends.sample.domain.port;
 
 import java.util.List;
 import java.util.Optional;
-import kr.co.petfriends.sample.domain.order.model.Order;
+import kr.co.petfriends.sample.domain.model.Order;
 
 public interface OrderDataPort {
 

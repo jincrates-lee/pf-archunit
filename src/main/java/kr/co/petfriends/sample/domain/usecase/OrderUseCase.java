@@ -1,8 +1,8 @@
-package kr.co.petfriends.sample.domain.order.usecase;
+package kr.co.petfriends.sample.domain.usecase;
 
 import java.util.List;
 import java.util.Optional;
-import kr.co.petfriends.sample.domain.order.model.Order;
+import kr.co.petfriends.sample.domain.model.Order;
 
 public interface OrderUseCase {
 

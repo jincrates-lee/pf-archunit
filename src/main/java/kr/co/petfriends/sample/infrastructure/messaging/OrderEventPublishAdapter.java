@@ -1,7 +1,7 @@
-package kr.co.petfriends.sample.infrastructure.messaging.order;
+package kr.co.petfriends.sample.infrastructure.messaging;
 
 import kr.co.petfriends.sample.common.annotation.Adapter;
-import kr.co.petfriends.sample.domain.order.port.OrderEventPublishPort;
+import kr.co.petfriends.sample.domain.port.OrderEventPublishPort;
 import lombok.RequiredArgsConstructor;
 
 @Adapter

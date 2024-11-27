@@ -1,13 +1,13 @@
-package kr.co.petfriends.sample.infrastructure.dataaccess.order;
+package kr.co.petfriends.sample.infrastructure.dataaccess;
 
 import java.util.List;
 import java.util.Optional;
 import kr.co.petfriends.sample.common.annotation.Adapter;
-import kr.co.petfriends.sample.domain.order.model.Order;
-import kr.co.petfriends.sample.domain.order.port.OrderDataPort;
-import kr.co.petfriends.sample.infrastructure.dataaccess.order.entity.OrderEntity;
-import kr.co.petfriends.sample.infrastructure.dataaccess.order.mapper.OrderDataMapper;
-import kr.co.petfriends.sample.infrastructure.dataaccess.order.repository.OrderJpaRepository;
+import kr.co.petfriends.sample.domain.model.Order;
+import kr.co.petfriends.sample.domain.port.OrderDataPort;
+import kr.co.petfriends.sample.infrastructure.dataaccess.entity.OrderEntity;
+import kr.co.petfriends.sample.infrastructure.dataaccess.mapper.OrderDataMapper;
+import kr.co.petfriends.sample.infrastructure.dataaccess.repository.OrderJpaRepository;
 import lombok.RequiredArgsConstructor;
 
 @Adapter
