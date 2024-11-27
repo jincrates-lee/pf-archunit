@@ -11,4 +11,7 @@ public interface OrderDataPort {
     Optional<Order> findByCode(String orderCode);
 
     List<Order> findAll();
+
+    // domain -> infrastructure에 대한 의존성이 생긴 경우
+    //OrderEntity save(OrderEntity orderEntity);
 }

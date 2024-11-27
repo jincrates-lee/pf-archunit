@@ -35,4 +35,10 @@ class OrderDataAdapter implements OrderDataPort {
             .map(OrderDataMapper::toDomain)
             .toList();
     }
+
+    // domain -> infrastructure에 대한 의존성이 생긴 경우
+//    @Override
+//    public OrderEntity save(OrderEntity orderEntity) {
+//        return null;
+//    }
 }
