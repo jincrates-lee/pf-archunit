@@ -41,11 +41,11 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("domain 패키지는 api, infrastructure 패키지에 의존하지 않아야 한다.")
         void checkDomainPackageDependency() {
             ArchRule rule = noClasses().that()
-                .resideInAPackage(DEFAULT_PACKAGE + ".domain..")
+                .resideInAPackage(DOMAIN_PACKAGE_SUB)
                 .should().dependOnClassesThat()
                 .resideInAnyPackage(
-                    DEFAULT_PACKAGE + ".api..",
-                    DEFAULT_PACKAGE + ".infrastructure.."
+                    API_PACKAGE_SUB,
+                    INFRA_PACKAGE_SUB
                 );
 
             rule.check(TARGET_CLASSES);
@@ -55,11 +55,9 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("api 패키지는 infrastructure 패키지에 의존하지 않아야 한다.")
         void checkApiPackageDependency() {
             ArchRule rule = noClasses().that()
-                .resideInAPackage(DEFAULT_PACKAGE + ".api..")
+                .resideInAPackage(API_PACKAGE_SUB)
                 .should().dependOnClassesThat()
-                .resideInAnyPackage(
-                    DEFAULT_PACKAGE + ".infrastructure.."
-                );
+                .resideInAnyPackage(INFRA_PACKAGE_SUB);
 
             rule.check(TARGET_CLASSES);
         }
@@ -68,11 +66,9 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("infrastructure 패키지는 api 패키지에 의존하지 않아야 한다.")
         void checkInfrastructurePackageDependency() {
             ArchRule rule = noClasses().that()
-                .resideInAPackage(DEFAULT_PACKAGE + ".infrastructure..")
+                .resideInAPackage(INFRA_PACKAGE_SUB)
                 .should().dependOnClassesThat()
-                .resideInAnyPackage(
-                    DEFAULT_PACKAGE + ".api.."
-                );
+                .resideInAnyPackage(API_PACKAGE_SUB);
 
             rule.check(TARGET_CLASSES);
         }
@@ -81,12 +77,12 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("common 패키지는 domain, api, infrastructure 패키지에 의존하지 않아야 한다.")
         void checkCommonPackageDependency() {
             ArchRule rule = noClasses().that()
-                .resideInAPackage(DEFAULT_PACKAGE + ".common..")
+                .resideInAPackage(COMMON_PACKAGE_SUB)
                 .should().dependOnClassesThat()
                 .resideInAnyPackage(
-                    DEFAULT_PACKAGE + ".domain..",
-                    DEFAULT_PACKAGE + ".api..",
-                    DEFAULT_PACKAGE + ".infrastructure.."
+                    DOMAIN_PACKAGE_SUB,
+                    API_PACKAGE_SUB,
+                    INFRA_PACKAGE_SUB
                 );
 
             rule.check(TARGET_CLASSES);
@@ -136,7 +132,7 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("UseCase 규칙을 검증한다.")
         void checkUseCaseRules() {
             ArchRule rule = classes().that()
-                .resideInAnyPackage("..usecase")
+                .resideInAnyPackage(USE_CASE_PACKAGE)
                 .should().haveSimpleNameEndingWith("UseCase")
                 .andShould().beInterfaces()
                 .because("usecase 패키지 내에 클래스명은 UseCase로 끝나야 한다.")
@@ -166,7 +162,7 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("Port 규칙을 검증한다.")
         void checkOutPortRules() {
             ArchRule rule = classes().that()
-                .resideInAnyPackage("..port")
+                .resideInAnyPackage(PORT_PACKAGE)
                 .should().haveSimpleNameEndingWith("Port")
                 .andShould().beInterfaces()
                 .because("port 패키지 내에 클래스명은 Port로 끝나야 한다.")
@@ -196,7 +192,7 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("Entity 규칙을 검증한다.")
         void checkEntityRules() {
             classes().that()
-                .resideInAPackage("..entity").and()
+                .resideInAPackage(ENTITY_PACKAGE).and()
                 .haveNameNotMatching(".*\\$.*")  // 내부 클래스를 제외
                 .should().haveSimpleNameEndingWith("Entity")
                 .andShould().beAnnotatedWith(Entity.class)
@@ -219,7 +215,7 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("Repository 규칙을 검증한다.")
         void checkRepositoryRules() {
             ArchRule rule = classes().that()
-                .resideInAPackage("..repository")
+                .resideInAPackage(REPOSITORY_PACKAGE)
                 .should().haveSimpleNameEndingWith("Repository")
                 .andShould().beInterfaces()
                 .andShould().notBeAnnotatedWith(Repository.class)
@@ -234,7 +230,7 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @DisplayName("Controller 규칙을 검증한다.")
         void checkControllerRules() {
             classes().that()
-                .resideInAPackage("..controller")
+                .resideInAPackage(CONTROLLER_PACKAGE)
                 .should().haveSimpleNameEndingWith("Controller")
                 .andShould().beAnnotatedWith(RestController.class)
                 .andShould().notBeAnnotatedWith(Controller.class)
@@ -246,13 +242,13 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
                 .check(TARGET_CLASSES);
 
             methods().that().arePublic().and()
-                .areDeclaredInClassesThat().resideInAPackage("..controller")
+                .areDeclaredInClassesThat().resideInAPackage(CONTROLLER_PACKAGE)
                 .should().haveRawReturnType(ResponseEntity.class)
                 .because("controller 패키지 내에 public 메서드는 ResponseEntity를 리턴해야 한다.")
                 .check(TARGET_CLASSES);
 
             methods().that().arePublic().and()
-                .areDeclaredInClassesThat().resideInAPackage("..controller")
+                .areDeclaredInClassesThat().resideInAPackage(CONTROLLER_PACKAGE)
                 .should().notBeAnnotatedWith(RequestMapping.class)
                 .andShould().beAnnotatedWith(PostMapping.class)
                 .orShould().beAnnotatedWith(GetMapping.class)
