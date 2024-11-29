@@ -1,4 +1,4 @@
-package kr.co.petfriends.sample.api.service.dto;
+package kr.co.petfriends.sample.order.application.usecase.dto;
 
 import jakarta.validation.constraints.NotBlank;
 

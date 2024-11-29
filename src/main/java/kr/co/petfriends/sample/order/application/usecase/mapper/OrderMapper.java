@@ -1,12 +1,12 @@
-package kr.co.petfriends.sample.api.service.mapper;
+package kr.co.petfriends.sample.order.application.usecase.mapper;
 
 import static kr.co.petfriends.sample.common.constants.CommonConstant.ORDER_PREFIX;
 
-import kr.co.petfriends.sample.api.service.dto.CreateOrderCommand;
-import kr.co.petfriends.sample.api.service.dto.OrderResponse;
 import kr.co.petfriends.sample.common.utils.IdGenerator;
-import kr.co.petfriends.sample.domain.enums.OrderStatus;
-import kr.co.petfriends.sample.domain.model.Order;
+import kr.co.petfriends.sample.order.application.usecase.dto.CreateOrderCommand;
+import kr.co.petfriends.sample.order.application.usecase.dto.OrderResponse;
+import kr.co.petfriends.sample.order.domain.enums.OrderStatus;
+import kr.co.petfriends.sample.order.domain.model.Order;
 
 public class OrderMapper {
 

@@ -1,4 +1,4 @@
-package kr.co.petfriends.sample.domain.enums;
+package kr.co.petfriends.sample.order.domain.enums;
 
 public enum OrderStatus {
     REQUESTED("주문 접수"),

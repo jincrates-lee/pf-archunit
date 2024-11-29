@@ -1,7 +1,7 @@
-package kr.co.petfriends.sample.infrastructure.dataaccess.mapper;
+package kr.co.petfriends.sample.order.adapter.persistence.mapper;
 
-import kr.co.petfriends.sample.domain.model.Order;
-import kr.co.petfriends.sample.infrastructure.dataaccess.entity.OrderEntity;
+import kr.co.petfriends.sample.order.adapter.persistence.entity.OrderEntity;
+import kr.co.petfriends.sample.order.domain.model.Order;
 
 public class OrderDataMapper {
 

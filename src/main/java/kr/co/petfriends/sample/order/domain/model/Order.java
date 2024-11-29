@@ -1,7 +1,7 @@
-package kr.co.petfriends.sample.domain.model;
+package kr.co.petfriends.sample.order.domain.model;
 
 import kr.co.petfriends.sample.common.annotation.DomainModel;
-import kr.co.petfriends.sample.domain.enums.OrderStatus;
+import kr.co.petfriends.sample.order.domain.enums.OrderStatus;
 import lombok.Builder;
 
 @Builder

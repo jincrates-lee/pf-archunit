@@ -1,4 +1,4 @@
-package kr.co.petfriends.sample.infrastructure.dataaccess.entity;
+package kr.co.petfriends.sample.order.adapter.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,7 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import kr.co.petfriends.sample.domain.enums.OrderStatus;
+import kr.co.petfriends.sample.order.domain.enums.OrderStatus;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -42,7 +42,12 @@ public class OrderEntity {
     private OrderStatus status;
 
     @Builder
-    public OrderEntity(Long id, String code, String userId, OrderStatus status) {
+    public OrderEntity(
+        Long id,
+        String code,
+        String userId,
+        OrderStatus status
+    ) {
         this.id = id;
         this.code = code;
         this.userId = userId;

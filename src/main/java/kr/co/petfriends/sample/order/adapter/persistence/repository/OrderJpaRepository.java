@@ -1,8 +1,8 @@
-package kr.co.petfriends.sample.infrastructure.dataaccess.repository;
+package kr.co.petfriends.sample.order.adapter.persistence.repository;
 
 import java.util.List;
 import java.util.Optional;
-import kr.co.petfriends.sample.infrastructure.dataaccess.entity.OrderEntity;
+import kr.co.petfriends.sample.order.adapter.persistence.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OrderJpaRepository extends JpaRepository<OrderEntity, Long> {
