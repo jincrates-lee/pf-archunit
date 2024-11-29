@@ -25,4 +25,9 @@ public abstract class ArchUnitSupport {
         .withImportOption(Predefined.DO_NOT_INCLUDE_ARCHIVES)  // 아카이브 파일은 제외
         .withImportOption(Predefined.DO_NOT_INCLUDE_JARS)  // JAR 파일은 제외
         .importPackages(DEFAULT_PACKAGE);  // 지정한 루트 패키지 이하의 모든 클래스를 대상으로 지정
+
+    // importPackages() 메서드를 사용하여 패키지를 지정하면 해당 패키지 이하의 모든 클래스를 대상으로 지정할 수 있습니다.
+    protected final JavaClasses IMPORTED_CLASSES = new ClassFileImporter().importPackages(
+        "kr.co.petfriends.sample");
 }
+

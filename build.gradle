@@ -1,7 +1,7 @@
 plugins {
-    id 'org.springframework.boot' version "${springBootVersion}"
-    id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
-    id 'java'
+  id 'org.springframework.boot' version "${springBootVersion}"
+  id 'io.spring.dependency-management' version "${springDependencyManagementVersion}"
+  id 'java'
 }
 
 group = "${projectGroup}"
@@ -9,30 +9,31 @@ version = "${applicationVersion}" + new Date().format("yyyyMMddHHmmss")
 sourceCompatibility = "${javaVersion}"
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    // spring boot
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  // spring boot
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+  implementation 'org.springframework.boot:spring-boot-starter-validation'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    // lombok
-    compileOnly "org.projectlombok:lombok:${lombokVersion}"
-    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+  // lombok
+  compileOnly "org.projectlombok:lombok:${lombokVersion}"
+  testImplementation "org.projectlombok:lombok:${lombokVersion}"
+  annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    // slf4j
-    implementation "org.slf4j:slf4j-api:${slf4jVersion}"
+  // slf4j
+  implementation "org.slf4j:slf4j-api:${slf4jVersion}"
 
-    // database - h2
-    runtimeOnly "com.h2database:h2:${h2DatabaseVersion}"
+  // database - h2
+  runtimeOnly "com.h2database:h2:${h2DatabaseVersion}"
 
-    // archunit
-    testImplementation "com.tngtech.archunit:archunit:${archunitVersion}"
+  // archunit
+  testImplementation "com.tngtech.archunit:archunit:${archunitVersion}"
 }
 
 test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
