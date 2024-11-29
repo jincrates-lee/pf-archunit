@@ -1,18 +1,18 @@
-package kr.co.petfriends.sample.order.adapter.persistence;
+package kr.co.petfriends.sample.order.repository.impl;
 
 import java.util.List;
 import java.util.Optional;
 import kr.co.petfriends.sample.common.annotation.Adapter;
-import kr.co.petfriends.sample.order.adapter.persistence.entity.OrderEntity;
-import kr.co.petfriends.sample.order.adapter.persistence.mapper.OrderDataMapper;
-import kr.co.petfriends.sample.order.adapter.persistence.repository.OrderJpaRepository;
-import kr.co.petfriends.sample.order.application.port.OrderDataPort;
 import kr.co.petfriends.sample.order.domain.model.Order;
+import kr.co.petfriends.sample.order.repository.OrderJpaRepository;
+import kr.co.petfriends.sample.order.repository.OrderRepository;
+import kr.co.petfriends.sample.order.repository.entity.OrderEntity;
+import kr.co.petfriends.sample.order.repository.mapper.OrderDataMapper;
 import lombok.RequiredArgsConstructor;
 
 @Adapter
 @RequiredArgsConstructor
-class OrderDataAdapter implements OrderDataPort {
+class OrderRepositoryImpl implements OrderRepository {
 
     private final OrderJpaRepository repository;
 
@@ -35,10 +35,4 @@ class OrderDataAdapter implements OrderDataPort {
             .map(OrderDataMapper::toDomain)
             .toList();
     }
-
-    // domain -> infrastructure에 대한 의존성이 생긴 경우
-//    @Override
-//    public OrderEntity save(OrderEntity orderEntity) {
-//        return null;
-//    }
 }

@@ -1,4 +1,4 @@
-package kr.co.petfriends.sample.order.adapter.persistence.entity;
+package kr.co.petfriends.sample.order.repository.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

@@ -1,10 +1,10 @@
-package kr.co.petfriends.sample.order.application.port;
+package kr.co.petfriends.sample.order.repository;
 
 import java.util.List;
 import java.util.Optional;
 import kr.co.petfriends.sample.order.domain.model.Order;
 
-public interface OrderDataPort {
+public interface OrderRepository {
 
     Order save(Order order);
 

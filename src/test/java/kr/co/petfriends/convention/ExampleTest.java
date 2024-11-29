@@ -35,14 +35,31 @@ public class ExampleTest {
         .importPackages(DEFAULT_PACKAGE);  // 지정한 루트 패키지 이하의 모든 클래스를 대상으로 지정
 
     @Test
-    @DisplayName("domain 패키지는 api, infrastructure 패키지에 의존하지 않아야 한다.")
-    void domain_should_not_depend_on_api_and_infrastructure() {
+    @DisplayName("domain은 application과 adapter에서만 접근해야 한다.")
+    void domains_should_only_be_accessed_by_application_and_adapter() {
+        // 패키지를 지정하여 rule을 검증할 클래스 가져오기
+        final JavaClasses IMPORTED_CLASSES = new ClassFileImporter().importPackages("kr.co.petfriends.sample");
+
+        ArchRule rule = classes().that()       // classes() 메서드를 사용하여 클래스 규칙을 정의할 수 있습니다.
+            .resideInAPackage("..domain..")    // 규칙: 패키지명이 domain로 끝나는 클래스는 application, infrastructure, domain 패키지에서만 접근해야 한다.
+            .should().onlyBeAccessed().byAnyPackage(
+                "..application..",
+                "..adapter..",
+                "..domain.."
+            );
+
+        rule.check(IMPORTED_CLASSES);  // check() 메서드를 사용하여 규칙을 검증할 수 있습니다.
+    }
+
+    @Test
+    @DisplayName("domain 패키지는 application, adapter 패키지에 의존하지 않아야 한다.")
+    void domain_should_not_depend_on_application_and_adapter() {
         ArchRule rule = noClasses().that()
             .resideInAPackage("..domain..")
             .should().dependOnClassesThat()
             .resideInAnyPackage(
-                "..api..",
-                "..infrastructure"
+                "..application..",
+                "..adapter.."
             );
 
         rule.check(IMPORTED_CLASSES);
@@ -181,10 +198,22 @@ public class ExampleTest {
             .domainModels(DEFAULT_PACKAGE + ".domain.model..")
             .domainServices(DEFAULT_PACKAGE + ".domain.service..")
             .applicationServices(DEFAULT_PACKAGE + ".application..")
-            .adapter("web", DEFAULT_PACKAGE + ".adapter.web..")
-            .adapter("dataaccess", DEFAULT_PACKAGE + ".adapter.dataaccess..")
-            .adapter("messaging", DEFAULT_PACKAGE + ".adapter.messaging..")
-            .adapter("external", DEFAULT_PACKAGE + ".adapter.external..");
+            .adapter(
+                "web",
+                DEFAULT_PACKAGE + ".adapter.web.."
+            )
+            .adapter(
+                "dataaccess",
+                DEFAULT_PACKAGE + ".adapter.dataaccess.."
+            )
+            .adapter(
+                "messaging",
+                DEFAULT_PACKAGE + ".adapter.messaging.."
+            )
+            .adapter(
+                "external",
+                DEFAULT_PACKAGE + ".adapter.external.."
+            );
     }
 
     @Test

@@ -1,11 +1,10 @@
-package kr.co.petfriends.sample.order.adapter.web;
+package kr.co.petfriends.sample.order.controller;
 
 import java.net.URI;
 import java.util.List;
-import kr.co.petfriends.sample.common.annotation.Adapter;
-import kr.co.petfriends.sample.order.application.usecase.OrderUseCase;
-import kr.co.petfriends.sample.order.application.usecase.dto.CreateOrderCommand;
-import kr.co.petfriends.sample.order.application.usecase.dto.OrderResponse;
+import kr.co.petfriends.sample.order.service.OrderService;
+import kr.co.petfriends.sample.order.service.dto.CreateOrderCommand;
+import kr.co.petfriends.sample.order.service.dto.OrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,26 +15,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Adapter
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/orders")
 public class OrderController {
 
-    private final OrderUseCase orderUseCase;
+    private final OrderService orderService;
 
     @PostMapping
     public ResponseEntity<OrderResponse> requestOrder(
         @Validated @RequestBody CreateOrderCommand command
     ) {
-        OrderResponse response = orderUseCase.requestOrder(command);
+        OrderResponse response = orderService.requestOrder(command);
         return ResponseEntity.created(URI.create("/orders/" + response.code()))
             .body(response);
     }
 
     @GetMapping
     public ResponseEntity<List<OrderResponse>> getAllOrders() {
-        List<OrderResponse> response = orderUseCase.getAllOrders();
+        List<OrderResponse> response = orderService.getAllOrders();
         return ResponseEntity.ok(response);
     }
 
@@ -43,7 +41,7 @@ public class OrderController {
     public ResponseEntity<OrderResponse> getOrder(
         @PathVariable(name = "orderCode") String orderCode
     ) {
-        OrderResponse response = orderUseCase.getOrderByCode(orderCode);
+        OrderResponse response = orderService.getOrderByCode(orderCode);
         return ResponseEntity.ok(response);
     }
 }

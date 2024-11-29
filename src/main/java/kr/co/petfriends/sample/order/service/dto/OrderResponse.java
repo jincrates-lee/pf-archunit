@@ -1,4 +1,4 @@
-package kr.co.petfriends.sample.order.application.usecase.dto;
+package kr.co.petfriends.sample.order.service.dto;
 
 import kr.co.petfriends.sample.order.domain.enums.OrderStatus;
 import lombok.Builder;

@@ -107,7 +107,10 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
                 .layer("Repository").definedBy("..repository..")
 
                 .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
-                .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller", "Service")
+                .whereLayer("Service").mayOnlyBeAccessedByLayers(
+                    "Controller",
+                    "Service"
+                )
                 .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service")
 
                 .because("Controller는 다른 레이어에 접근하지 않아야 한다.")
@@ -122,10 +125,22 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
                 .domainModels("..domain.model..")
                 .domainServices("..domain.service..")
                 .applicationServices("..application..")
-                .adapter("web", "..adapter.web..")
-                .adapter("dataaccess", "..adapter.dataaccess..")
-                .adapter("messaging", "..adapter.messaging..")
-                .adapter("external", "..adapter.external..")
+                .adapter(
+                    "web",
+                    "..adapter.web.."
+                )
+                .adapter(
+                    "dataaccess",
+                    "..adapter.dataaccess.."
+                )
+                .adapter(
+                    "messaging",
+                    "..adapter.messaging.."
+                )
+                .adapter(
+                    "external",
+                    "..adapter.external.."
+                )
                 .because("어플리케이션은 도메인에 의존해야 한다.")
                 .because("도메인은 어플리케이션에 의존하지 않아야 한다.")
                 .withOptionalLayers(true);  // 선택적 레이어 사용 여부
