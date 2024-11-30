@@ -101,49 +101,38 @@ public class ArchitectureRolesTest extends ArchUnitSupport {
         @Test
         @DisplayName("레이어드 아키텍처 레이어 규칙을 검증한다.")
         void check_layered_architecture_rule() {
-            Architectures.layeredArchitecture().consideringOnlyDependenciesInLayers()
+            ArchRule rule = Architectures.layeredArchitecture()
+                .consideringOnlyDependenciesInLayers()
                 .layer("Controller").definedBy("..controller..")
                 .layer("Service").definedBy("..service..")
                 .layer("Repository").definedBy("..repository..")
 
                 .whereLayer("Controller").mayNotBeAccessedByAnyLayer()
-                .whereLayer("Service").mayOnlyBeAccessedByLayers(
-                    "Controller",
-                    "Service"
-                )
+                .whereLayer("Service").mayOnlyBeAccessedByLayers("Controller", "Service")
                 .whereLayer("Repository").mayOnlyBeAccessedByLayers("Service")
 
                 .because("Controller는 다른 레이어에 접근하지 않아야 한다.")
                 .because("Service는 Controller와 Service 레이어에만 접근할 수 있다.")
                 .because("Repository는 Service 레이어에만 접근할 수 있다.");
+
+            rule.check(TARGET_CLASSES);
         }
 
         @Test
         @DisplayName("어니언 아키텍처(헥사고날 or 포트어댑터) 레이어 규칙을 검증한다.")
         void checkOnionArchitectureRule() {
-            Architectures.onionArchitecture()
+            ArchRule rule = Architectures.onionArchitecture()
                 .domainModels("..domain.model..")
                 .domainServices("..domain.service..")
                 .applicationServices("..application..")
-                .adapter(
-                    "web",
-                    "..adapter.web.."
-                )
-                .adapter(
-                    "dataaccess",
-                    "..adapter.dataaccess.."
-                )
-                .adapter(
-                    "messaging",
-                    "..adapter.messaging.."
-                )
-                .adapter(
-                    "external",
-                    "..adapter.external.."
-                )
+                .adapter("web", "..adapter.web..")
+                .adapter("dataaccess", "..adapter.dataaccess..")
+                .adapter("messaging", "..adapter.messaging..")
+                .adapter("external", "..adapter.external..")
                 .because("어플리케이션은 도메인에 의존해야 한다.")
-                .because("도메인은 어플리케이션에 의존하지 않아야 한다.")
-                .withOptionalLayers(true);  // 선택적 레이어 사용 여부
+                .because("도메인은 어플리케이션에 의존하지 않아야 한다.");
+
+            rule.check(TARGET_CLASSES);
         }
     }
 
