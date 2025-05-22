@@ -10,7 +10,11 @@ public class OrderDataMapper {
             .id(order.id())
             .code(order.code())
             .userId(order.userId())
+            .quantity(order.quantity())
+            .description(order.description())
             .status(order.status())
+            .createdAt(order.createdAt())
+            .updatedAt(order.updatedAt())
             .build();
     }
 
@@ -19,7 +23,11 @@ public class OrderDataMapper {
             .id(orderEntity.getId())
             .code(orderEntity.getCode())
             .userId(orderEntity.getUserId())
+            .quantity(orderEntity.getQuantity())
+            .description(orderEntity.getDescription())
             .status(orderEntity.getStatus())
+            .createdAt(orderEntity.getCreatedAt())
+            .updatedAt(orderEntity.getUpdatedAt())
             .build();
     }
 }

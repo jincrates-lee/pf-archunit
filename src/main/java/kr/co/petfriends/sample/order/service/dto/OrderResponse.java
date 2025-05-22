@@ -1,5 +1,6 @@
 package kr.co.petfriends.sample.order.service.dto;
 
+import java.time.LocalDateTime;
 import kr.co.petfriends.sample.order.domain.enums.OrderStatus;
 import lombok.Builder;
 
@@ -7,7 +8,10 @@ import lombok.Builder;
 public record OrderResponse(
     String code,
     String userId,
-    OrderStatus status
+    Integer quantity,
+    String description,
+    OrderStatus status,
+    LocalDateTime createdAt,
+    LocalDateTime updatedAt
 ) {
-
 }
